@@ -24,6 +24,9 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
 end
 
+# Use faker to create test data
+gem 'faker', '~> 1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
