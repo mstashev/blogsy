@@ -10,6 +10,10 @@ prolific user is dejuan.bosco with 95 posts!!
 
 Query and results are below.
 ```
+
+User.order(posts_count: :desc).first
+
+
 (0.6ms)  SELECT COUNT(*) FROM "posts" WHERE (user_id=5)
 => 10
 2.4.0 :016 > User.select('username').where('id=5')

@@ -22,6 +22,7 @@ gem 'puma', '~> 3.0'
 # Use factory_girl as default testing
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'shoulda'
 end
 
 # Use faker to create test data
