@@ -28,6 +28,12 @@ end
 # Use faker to create test data
 gem 'faker', '~> 1.0'
 
+gem 'pry-rails'
+
+gem 'pry-nav'
+
+gem 'active_model_serializers', '~> 0.10.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
