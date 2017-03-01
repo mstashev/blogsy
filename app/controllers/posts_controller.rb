@@ -1,22 +1,19 @@
 class PostsController < ApplicationController
 
+  before_action :find_post, only: [:show, :destroy, :upvote]
+
   def index
-    @posts = Post.all
+    if params[:user_id]
+      @user = User.find params[:id]
+      @posts = @user.posts
+    else
+      @posts = Post.all
+    end
     render json: @posts
   end
 
   def show
-    @post = Post.find params[:id]
     render json: @post
-  end
-
-  def show_comments
-    @post = Post.find params[:id]
-    if @post.comments == nil
-      render json: {message: "This post has no comments yet."}
-    else
-      render json: @post.comments
-    end
   end
 
   def create
@@ -29,7 +26,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find params[:id]
     if @post.update(post_params)
       render json: @post
     else
@@ -38,18 +34,12 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post = Post.find params[:id]
-    post_upvote = @post.upvote + 1
-    if @post.update(upvote: post_upvote)
-      render json: @post
-    else
-      render json: @post.errors.full_messages, status: 400
-    end
+    @post.increment!(:upvote)
+    render json: @post
   end
 
 
   def destroy
-    @post = Post.find_by(id: params[:id])
     @post.destroy
     render json: {message: "DELETE!!"}, status: 200
   end
@@ -59,5 +49,10 @@ class PostsController < ApplicationController
   def post_params
     params.permit(:id, :title, :body, :upvote)
   end
+
+  def find_post
+    @post = Post.find params[:id]
+  end
+
 
 end

@@ -1,3 +1,11 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body
+  attributes :title,
+             :body,
+             :username,
+             :upvote
+
+  def username
+    object.user.username
+  end
+
 end

@@ -13,8 +13,7 @@
   Random.rand(2..50).times do
     user.posts.create!(
       title:  Faker::Book.unique.title,
-      body:   Faker::Lorem.paragraphs(4, true),
-      upvote: 1
+      body:   Faker::Lorem.paragraphs(4, true)
     )
   end
 end
