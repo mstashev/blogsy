@@ -7,19 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 5.times do
   user = User.create!(
-            username:       Faker::Internet.user_name,
+            username:       Faker::Internet.unique.user_name,
             email_address:  Faker::Internet.unique.email
           )
-  Random.rand(0..100).times do
+  Random.rand(2..50).times do
     user.posts.create!(
-      title:  Faker::Book.title,
-      body:   Faker::Lorem.paragraphs(4, true)
+      title:  Faker::Book.unique.title,
+      body:   Faker::Lorem.paragraphs(4, true),
+      upvote: 1
     )
   end
 end
 
 100.times do
-  usr_id = Random.rand(1..5)
+  usr_id = Random.rand(1..User.all.count)
   pst_id = Random.rand(1..Post.all.count)
 
   Comment.create!(
