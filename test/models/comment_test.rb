@@ -6,7 +6,7 @@ class CommentTest < ActiveSupport::TestCase
   should belong_to :user
   should validate_presence_of :body
 
-  test "Test presences" do
+  test "TestPresence" do
     comment = build(:comment)
     comment.user = nil
     refute comment.save
